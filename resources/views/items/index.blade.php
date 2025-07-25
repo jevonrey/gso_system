@@ -50,11 +50,11 @@
                 <td>
 
                     <div>                        
-                        <a href="{{ route('items.edit', $item->id) }}" class="bg-green-600 hover:bg-green-900 text-white text-xs rounded">Edit</a><br>
+                        <a href="{{ route('items.edit', $item->id) }}" class="bg-green-600 hover:bg-green-900 text-white text-xs rounded px-2">Edit</a><br>
                             <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline-block">
                                     @csrf @method('DELETE')
                                 <button onclick="return confirm('Delete this item?')"
-                                    class="bg-red-600 hover:bg-red-700 text-white text-xs rounded">
+                                    class="bg-red-600 hover:bg-red-900 text-white text-xs rounded">
                                     Delete
                                 </button>
                             </form>

@@ -21,8 +21,7 @@ class ItemController extends Controller
             'location',
             'person',
             'remarks'
-        ], 'like', '%' . $search . '%')
-        ->get();
+        ], 'like', '%' . $search . '%')->get();
         // $query->where('old', 'like', '%' . $search . '%')
         //       ->orWhere('new', 'like', '%' . $search . '%')
         //       ->orWhere('type', 'like', '%' . $search . '%')
