@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 
-class DepartmentController extends Controller
+class PublicDepartmentController extends Controller
 {
     public function index(Request $request)
     {
@@ -33,7 +33,7 @@ class DepartmentController extends Controller
         $totalCost = (clone $itemsQuery)->sum('cost');
         $totalItems = (clone $itemsQuery)->sum('stock_quantity');
 
-        return view('departments.index', compact(
+        return view('public.departments', compact(
             'locations',
             'selectedLocation',
             'items',

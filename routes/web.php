@@ -6,6 +6,7 @@ use App\Http\Controllers\IssuanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublicDashboardController;
+use App\Http\Controllers\PublicDepartmentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 //View Public Records
 Route::get('/', [PublicDashboardController::class, 'index'])->name('public.dashboard');
+Route::get('/public/departments', [PublicDepartmentController::class, 'index'])->name('public.departments');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

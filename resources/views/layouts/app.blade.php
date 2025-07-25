@@ -122,8 +122,7 @@ Categories</h1>
         <a href="{{ route('items.furniture') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Furnitures/Fixtures</a>
         <a href="{{ route('items.vehicle') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Vehicle</a>
         </div>        
-    </div>
-    <br><br>
+    </div><br>
     <p class="text-xs text-red-800">Powered by: <p class="text-xs text-blue-800">xyberjevon</p></p>
 </nav>
         </aside>
