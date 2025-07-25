@@ -13,13 +13,23 @@ class ItemController extends Controller
     $search = $request->input('search');
     $search = strtolower($search); // convert input to lowercase
     $items = Item::when($search, function ($query, $search) {
-        $query->where('old', 'like', '%' . $search . '%')
-              ->orWhere('new', 'like', '%' . $search . '%')
-              ->orWhere('type', 'like', '%' . $search . '%')
-              ->orWhere('description', 'like', '%' . $search . '%')
-              ->orWhere('location', 'like', '%' . $search . '%')
-              ->orWhere('person', 'like', '%' . $search . '%')
-              ->orWhere('remarks', 'like', '%' . $search . '%');
+        $query->whereAny([
+            'old', 
+            'new',
+            'type',
+            'description',
+            'location',
+            'person',
+            'remarks'
+        ], 'like', '%' . $search . '%')
+        ->get();
+        // $query->where('old', 'like', '%' . $search . '%')
+        //       ->orWhere('new', 'like', '%' . $search . '%')
+        //       ->orWhere('type', 'like', '%' . $search . '%')
+        //       ->orWhere('description', 'like', '%' . $search . '%')
+        //       ->orWhere('location', 'like', '%' . $search . '%')
+        //       ->orWhere('person', 'like', '%' . $search . '%')
+        //       ->orWhere('remarks', 'like', '%' . $search . '%');
               
     })
     ->paginate(10)
