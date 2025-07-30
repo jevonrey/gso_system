@@ -16,24 +16,24 @@
     
     <!-- Total Stock Box -->
     <div class="bg-gray-700 shadow rounded-lg p-6">
-        <h3 class="text-m font-medium mb-2">Total Procurements</h3>
+        <h3 class="text-m font-bold mb-2">Total Procurements</h3>
         <p class="text-3xl font-bold text-green-600">{{ number_format($totalStocks) }}</p><br>
         <p class="text-gray-300 font-sans font-thin text-sm">
-            Total counts of stocks procured by the municipality.
+            Total number of items procured by the municipality.
         </p>
     </div>
 
     <!-- Total Procurement Cost -->
     <div class="bg-gray-700 shadow rounded-lg p-6">
-        <h3 class="text-m font-medium mb-2">Total Procured Items (Ammount)</h3>
+        <h3 class="text-m font-bold mb-2">Total Procurements Ammount</h3>
         <p class="text-3xl font-bold text-green-600">&#8369;{{ number_format ($totalItemCost, 2) ?? 'No items yet' }}</p><br>
         <p class="text-right underline text-xs"><a href="{{ route('items.index') }}">Details>></a></p>
-        <p class="text-gray-300 font-sans font-thin text-sm">Total Ammount of all procured items as listed in the system.</p>
+        <p class="text-gray-300 font-sans font-thin text-sm">Total Ammount of all procured items as listed in database.</p>
     </div>
 
     <!-- Missing Items -->
     <div class="bg-gray-700 shadow rounded-lg p-6">
-        <h3 class="text-m font-medium mb-2">Missing Items</h3>
+        <h3 class="text-m font-bold mb-2">Missing Items</h3>
         <p class="text-lg font-bold text-yellow-600">{{ $missingCount == 0 ? 'No items yet' : $missingCount . ' items found' }}</p><br>
         <p class="text-right underline text-xs"><a href="{{ route('items.missing') }}">Details>></a></p>
         <p class="text-gray-300 font-sans font-thin text-sm">
@@ -43,7 +43,7 @@
 
     <!-- Unserviceable Items -->
     <div class="bg-gray-700 shadow rounded-lg p-6">
-        <h3 class="text-m font-medium mb-2">Unserviceable Items</h3>
+        <h3 class="text-m font-bold mb-2">Unserviceable Items</h3>
         <p class="text-lg font-bold text-red-600">{{ $unserviceableCount == 0 ? 'No items yet' : $unserviceableCount . ' items found' }}</p><br>
          <p class="text-right underline text-xs"><a href="{{ route('items.unserviceable') }}">Details>></a></p>
         <p class="text-gray-300 font-sans font-thin text-sm">
@@ -53,7 +53,7 @@
 
     {{-- Disposable Items --}}
     <div class="bg-gray-700 shadow rounded-lg p-6">
-        <h3 class="text-m font-medium mb-2">Disposable Items</h3>
+        <h3 class="text-m font-bold mb-2">Disposable Items</h3>
         <p class="text-lg font-bold text-blue-600">{{ $disposalCount == 0 ? 'No items yet' : $disposalCount . ' items found' }}</p><br>
          <p class="text-right underline text-xs"><a href="{{ route('items.disposal') }}">Details>></a></p>
         <p class="text-gray-300 font-sans font-thin text-sm">
@@ -63,7 +63,7 @@
 
     {{-- Total Missing items in amount --}}
 <div class="bg-gray-700 shadow rounded-lg p-6">
-    <h3 class="text-m font-medium mb-2">Total Missing Items (Amount)</h3>
+    <h3 class="text-m font-bold mb-2">Total Missing Items (Amount)</h3>
     <p class="text-lg font-bold text-yellow-600">&#8369;{{ number_format($missingTotalCost, 2) }}</p><br>
     <p class="text-gray-300 font-sans font-thin text-sm">
             Total ammount of all missing items as per this update.
@@ -72,7 +72,7 @@
 
 {{-- Total Unserviceable items in amount --}}
 <div class="bg-gray-700 shadow rounded-lg p-6">
-    <h3 class="text-m font-medium mb-2">Total Unserviceable Items (Amount)</h3>
+    <h3 class="text-m font-bold mb-2">Total Unserviceable Items (Amount)</h3>
     <p class="text-lg font-bold text-red-600">&#8369;{{ number_format($unserviceableTotalCost, 2) }}</p><br>
     <p class="text-gray-300 font-sans font-thin text-sm">
             Total ammount of all unserviceable items as per this update.
@@ -81,7 +81,7 @@
 
 {{-- Total Disposable items in amount --}}
 <div class="bg-gray-700 shadow rounded-lg p-6">
-    <h3 class="text-m font-medium mb-2">Total Disposable Items (Amount)</h3>
+    <h3 class="text-m font-bold mb-2">Total Disposable Items (Amount)</h3>
     <p class="text-lg font-bold text-blue-600">&#8369;{{ number_format($disposalTotalCost, 2) }}</p><br>
     <p class="text-gray-300 font-sans font-thin text-sm">
             Total ammount of all disposable items as per this update.
