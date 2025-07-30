@@ -38,6 +38,9 @@ Route::get('/items/disposal', [ItemController::class, 'disposal'])->name('items.
 //IT Equipment
 Route::get('/items/it', [ItemController::class, 'it'])->name('items.it');
 
+//Office
+Route::get('/items/office', [ItemController::class, 'office'])->name('items.office');
+
 //Furnitures and Fixtures
 Route::get('/items/furniture', [ItemController::class, 'furniture'])->name('items.furniture');
 
@@ -47,6 +50,8 @@ Route::get('/items/vehicle', [ItemController::class, 'vehicle'])->name('items.ve
 //Department View
 Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
 
+//Export Route
+Route::get('/departments/export', [DepartmentController::class, 'export'])->name('departments.export');
 
 //Dashboard view change
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');

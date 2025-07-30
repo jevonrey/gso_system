@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Exports\ItemsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DepartmentController extends Controller
 {
@@ -41,4 +43,16 @@ class DepartmentController extends Controller
             'totalItems'
         ));
     }
+
+    public function export(Request $request)
+{
+    $location = $request->query('location');
+    $date = now()->format('Y-m-d');
+
+    $filename = $location 
+        ? str_replace(' ', '_', strtolower($location)) . "_items_{$date}.xlsx"
+        : "all_departments_items_{$date}.xlsx";
+
+    return Excel::download(new ItemsExport($location), $filename);
+}
 }

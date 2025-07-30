@@ -48,7 +48,6 @@
                 <td class="text-center">{{ $item->type }}</td>
                 <td class="text-center">{{ $item->remarks }}</td>
                 <td>
-
                     <div>                        
                         <a href="{{ route('items.edit', $item->id) }}" class="bg-green-600 hover:bg-green-900 text-white text-xs rounded px-2">Edit</a><br>
                             <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline-block">

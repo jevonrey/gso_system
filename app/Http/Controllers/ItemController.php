@@ -120,6 +120,12 @@ public function it()
     $totalCost = $items->sum('cost');
     return view('items.it', compact('items', 'totalCost'));
 }
+public function office()
+{
+    $items = Item::where('type', 'office')->get();
+    $totalCost = $items->sum('cost');
+    return view('items.office', compact('items', 'totalCost'));
+}
 public function furniture()
 {
     $items = Item::where('type', 'Furniture')->get();

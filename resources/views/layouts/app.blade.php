@@ -118,7 +118,8 @@ Categories</h1>
         </svg>
     </button>
         <div x-show="open" class="mt-1 space-y-1 pl-4 transition duration-300 ease-in-out">
-        <a href="{{ route('items.it') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">IT Equipment</a>
+        <a href="{{ route('items.it') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">IT Equipments</a>
+        <a href="{{ route('items.office') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Office</a>
         <a href="{{ route('items.furniture') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Furnitures/Fixtures</a>
         <a href="{{ route('items.vehicle') }}" class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Vehicle</a>
         </div>        
