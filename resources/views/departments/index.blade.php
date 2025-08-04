@@ -40,11 +40,11 @@
         </form>
         
         {{-- Export Button --}}
-    <form method="GET" action="{{ route('departments.export') }}" class="mt-6 w-full justify-items-center">
+    <form method="GET" action="{{ route('departments.export') }}" class="mt-6 w-full justify-evenly">
     <input type="hidden" name="location" value="{{ $selectedLocation }}">
     <button type="submit" class="bg-green-600 text-white px-2 py-2 rounded text-xs">
         Export to Excel
-    </button>
+    </button>  
     </form>
     </div>
 

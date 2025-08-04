@@ -29,7 +29,9 @@ class DepartmentController extends Controller
         }
 
         // 4) Get/paginate items
-        $items = $itemsQuery->orderBy('description')->paginate(15);
+        $items = $itemsQuery->orderBy('description')
+        ->paginate(15)
+        ->appends(['location' => $selectedLocation]);
 
         // 5) Totals (clone to avoid affecting the main query)
         $totalCost = (clone $itemsQuery)->sum('cost');

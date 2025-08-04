@@ -36,9 +36,9 @@
         </tbody>
         <tfoot>
     <tr class="bg-gray-900 font-bold">
-        <td colspan="4" class="p-2 border text-right"><p class="text-yellow-400">Total Cost:</p></td>
-        <td class="p-2 border text-right text-red-600">₱{{ number_format($totalCost, 2) }}</td>
-        <td colspan="4" class="p-2 border"></td>
+        <td colspan="4" class="p-2 text-right"><p class="text-yellow-400">Total Cost:</p></td>
+        <td class="p-2 text-right text-red-600">₱{{ number_format($totalCost, 2) }}</td>
+        <td colspan="4" class="p-2"></td>
     </tr>
 </tfoot>
     </table>

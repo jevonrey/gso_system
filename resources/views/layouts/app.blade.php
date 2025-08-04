@@ -136,12 +136,12 @@ Categories</h1>
                 
                     <div class="1/4 w-auto">
                         <img src="{{asset ('image\logo_2.png') }}" alt="stajosefa_logo" class="w-28 h-28 text-center ml-10">
-                    </div>               
-                    <div class="1/4">
-                        <h1 class="text-4xl text-center text-gray-300">
-                            General Services Office<br>Sta Josefa, Agusan del Sur
-                        </h1>
                     </div>
+                    <div class="1/4">
+                        <h1 class="text-gray-300 text-4xl text-center">
+                            General Services Office <br> Inventory Management System    
+                        </h1>    
+                    </div>              
                     <div class="1/4 w-auto float-end">
                         <img src="{{asset ('image\agsur.png') }}" alt="stajosefa_logo" class="w-28 h-28 text-center mr-10">
                     </div>
