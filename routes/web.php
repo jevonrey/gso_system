@@ -7,21 +7,32 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublicDashboardController;
 use App\Http\Controllers\PublicDepartmentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 
-//Redirects to Login
-// Route::get('/', function () {
-//     return view('public.dashboard');
-// });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Other page placeholders
+Route::view('/about', 'website.about')->name('about');
+Route::view('/staff', 'website.staff')->name('staff');
+Route::view('/booking', 'booking.index')->name('booking');
+Route::view('/contact', 'website.contact')->name('contact');
 
 //View Public Records
-Route::get('/', [PublicDashboardController::class, 'index'])->name('public.dashboard');
+Route::get('/public/dashboard', [PublicDashboardController::class, 'index'])->name('public.dashboard');
 Route::get('/public/departments', [PublicDepartmentController::class, 'index'])->name('public.departments');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+//Bookings
+Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
+Route::get('/booking/request', [BookingController::class, 'create'])->name('booking.create');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 
 //Edit items
 Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');

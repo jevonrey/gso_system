@@ -12,9 +12,9 @@
                 <h3 class="text-lg font-medium mb-2">
                     Hello,
                 </h3>            
-                <p class="text-gray-300 font-sans font-thin text-sm">
-                This is a public views of the recorded procurement made by Municipality of Sta Josefa, 
-                Province of Agusan del Sur. Please LOGIN to continue editing stocks. Otherwise stay here.
+                <p class="text-gray-300 font-sans font-thin text-sm text-justify">
+                This is the public view of GSO records for procurements made by the Municipality of Sta. Josefa, Province of Agusan del Sur. 
+                Please log in to continue editing stock records. Otherwise, you may stay on this page to browse.
                 </p>
     </div>
     <!-- Total Stock Box -->
