@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('facility_bookings', function (Blueprint $table) {
-            $table->id();
-            $table->string('facility_name');
-            $table->string('event_name');
-            $table->string('requestor_name');
-            $table->dateTime('start_datetime');
-            $table->dateTime('end_datetime');
-            $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
-            $table->text('remarks')->nullable();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('facility_name');
+        $table->string('event_name');
+        $table->string('requestor_name');
+        $table->dateTime('start_datetime');
+        $table->dateTime('end_datetime');
+        $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
+        $table->text('remarks')->nullable();
+        $table->timestamps();
+    });
     }
 
     /**

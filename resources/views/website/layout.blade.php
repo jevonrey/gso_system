@@ -5,7 +5,12 @@
     <title>GSO | General Services Office</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
 </head>
+
 <body class="bg-gray-50 text-gray-900 font-sans">
 
     <!-- Navbar -->
@@ -26,16 +31,15 @@
                 <a href="{{ route('contact') }}" class="hover:text-blue-700">Contact</a>
                 <a href="{{ route('public.dashboard')}}" class="bg-blue-800 text-white px-3 py-1 rounded hover:bg-blue-900">GSO Portal</a>
             </nav>
-        </div>
+        </div>  
     </header>
 
     <!-- Page Content -->
     <main class="pt-6 bg-gray-300 h-auto">
         @yield('content')
-
-
         <section class="bg-gray-100 py-12">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 mt-2">
         <!-- Vision Card -->
         <div class="bg-white shadow rounded-lg p-6">
             <h2 class="text-4xl font-semibold text-blue-700 mb-2">Vision</h2>

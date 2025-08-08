@@ -9,6 +9,7 @@ use App\Http\Controllers\PublicDashboardController;
 use App\Http\Controllers\PublicDepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Admin\BookingAdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,14 @@ Route::get('/public/departments', [PublicDepartmentController::class, 'index'])-
 Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
 Route::get('/booking/request', [BookingController::class, 'create'])->name('booking.create');
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+
+//Booking Admin Panel
+Route::prefix('admin/booking')->middleware(['auth'])->group(function () {
+    Route::get('/', [BookingAdminController::class, 'index'])->name('admin.booking.index');
+    Route::get('/{id}/edit', [BookingAdminController::class, 'edit'])->name('admin.booking.edit');
+    Route::put('/{id}', [BookingAdminController::class, 'update'])->name('admin.booking.update');
+    Route::delete('/{id}', [BookingAdminController::class, 'destroy'])->name('admin.booking.destroy');
+});
 
 //Edit items
 Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');

@@ -20,7 +20,7 @@
                 
                 <div x-data="{ open: false }" class="relative inline-block text-left">
     <!-- Trigger -->
-    <button @click="open = !open"
+    <button @click = "open = !open"
         class="flex items-center space-x-2 focus:outline-none">
         <span class="text-gray-700 font-medium">{{ Auth::user()->name }}</span>
         <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
