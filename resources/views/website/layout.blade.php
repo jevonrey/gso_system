@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <title>GSO | General Services Office</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
+    @vite('resources/css/app.css')
 </head>
-
 <body class="bg-gray-50 text-gray-900 font-sans">
 
     <!-- Navbar -->
@@ -20,7 +16,7 @@
                 <img src="{{ asset('image/agsur.png') }}" class="w-10 h-10" alt="GSO Logo">
                 <div class="text-left leading-tight">
                     <div class="text-sm text-gray-600">Republic of the Philippines</div>
-                    <div class="text-xl font-bold text-blue-900">GENERAL SERVICES OFFICE</div>
+                    <div class="text-xl font-bold text-blue-900">STA JOSEFA, AGUSAN DEL SUR</div>
                 </div>
             </div>
             <nav class="space-x-6 text-sm font-medium text-gray-700">
@@ -30,6 +26,7 @@
                 <a href="{{ route('booking.index') }}" class="hover:text-blue-700">Booking</a>
                 <a href="{{ route('contact') }}" class="hover:text-blue-700">Contact</a>
                 <a href="{{ route('public.dashboard')}}" class="bg-blue-800 text-white px-3 py-1 rounded hover:bg-blue-900">GSO Portal</a>
+                <a href="{{ route ('login')}}" class="bg-blue-800 text-white px-3 py-1 rounded hover:bg-blue-900">Login</a>
             </nav>
         </div>  
     </header>
@@ -65,5 +62,8 @@
         <img src="{{ asset ('image/footer-gov-logo.png') }}" alt="" class="h-40 w-40">
         &copy; {{ date('Y') }} General Services Office. All rights reserved.
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
+    @stack('scripts')
 </body>
 </html>

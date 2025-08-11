@@ -7,35 +7,43 @@ use App\Models\FacilityBooking;
 
 class BookingController extends Controller
 {   
-    public function index()
-         {
-        // load bookings (you can add filters here later)
-        $bookings = FacilityBooking::orderBy('start_datetime')->get();
+    public function index(Request $request)    // <-- Request $request is required
+    {
+        $facilityFilter = $request->get('facility');
 
-        // convert to FullCalendar-friendly event array
+        $bookings = FacilityBooking::when($facilityFilter, function ($query, $facility) {
+            return $query->where('facility_name', $facility);
+        })->orderBy('start_datetime')->get();
+
         $events = $bookings->map(function ($b) {
-            return [
-                'id'    => $b->id,
-                'title' => trim($b->facility_name . ' — ' . $b->event_name),
-                // ensure ISO format; casting gives Carbon
-                'start' => $b->start_datetime ? $b->start_datetime->format('Y-m-d\TH:i:s') : null,
-                'end'   => $b->end_datetime ? $b->end_datetime->format('Y-m-d\TH:i:s') : null,
-                'color' => $b->status === 'Approved'
-                            ? '#16a34a'     // green
-                            : ($b->status === 'Rejected' ? '#dc2626' : '#f59e0b'), // red or amber
-                // extra data for modal
-                'extendedProps' => [
-                    'requestor' => $b->requestor_name,
-                    'status'    => $b->status,
-                    'remarks'   => $b->remarks,
-                    'facility'  => $b->facility_name,
-                ],
-            ];
-        });
+            $color = match ($b->status) {
+                'Approved' => '#16a34a',   // green
+                'Rejected' => '#dc2626',   // red
+                default    => '#f59e0b',   // yellow
+    };
 
-        // pass events as JSON-aware collection
+        return [
+            'title' => trim($b->facility_name . ' — ' . $b->event_name),
+            'start' => optional($b->start_datetime)->format('Y-m-d\TH:i:s'),
+            'end'   => optional($b->end_datetime)->format('Y-m-d\TH:i:s'),
+            'color' => $color,
+            'extendedProps' => [
+                'facility' => $b->facility_name,
+                'requestor' => $b->requestor_name,
+                'status' => $b->status,
+                'remarks' => $b->remarks,
+            ]
+        ];
+    });
+
+        $facilities = FacilityBooking::select('facility_name')
+            ->distinct()
+            ->pluck('facility_name');
+
         return view('booking.index', [
             'events' => $events,
+            'facilities' => $facilities,
+            'selectedFacility' => $facilityFilter
         ]);
     }
 

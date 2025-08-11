@@ -31,7 +31,7 @@ class ItemController extends Controller
         //       ->orWhere('remarks', 'like', '%' . $search . '%');
               
     })
-    ->paginate(10)
+    ->paginate(15)
     ->appends(['search' => $search]); // 👈 this preserves the search in pagination links
 
     return view('items.index', compact('items'));

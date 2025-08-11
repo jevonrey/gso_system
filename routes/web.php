@@ -10,6 +10,7 @@ use App\Http\Controllers\PublicDepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Admin\BookingAdminController;
+use App\Http\Controllers\FuelControlController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,9 +27,8 @@ Route::view('/contact', 'website.contact')->name('contact');
 Route::get('/public/dashboard', [PublicDashboardController::class, 'index'])->name('public.dashboard');
 Route::get('/public/departments', [PublicDepartmentController::class, 'index'])->name('public.departments');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+//Fuels Route
+Route::resource('fuel_controls', FuelControlController::class);
 
 //Bookings
 Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
@@ -46,29 +46,32 @@ Route::prefix('admin/booking')->middleware(['auth'])->group(function () {
 //Edit items
 Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
 
-//Missing Items
-Route::get('/items/missing', [ItemController::class, 'missing'])->name('items.missing');
+//Items Submenu Route
+Route::prefix('items')->group(function () {
+    Route::get('/missing', [ItemController::class, 'missing'])->name('items.missing');
+    Route::get('/unserviceable', [ItemController::class, 'unserviceable'])->name('items.unserviceable');
+    Route::get('/disposal', [ItemController::class, 'disposal'])->name('items.disposal');
+    Route::get('/items/it', [ItemController::class, 'it'])->name('items.it');
+    Route::get('/items/office', [ItemController::class, 'office'])->name('items.office');
+    Route::get('/items/furniture', [ItemController::class, 'furniture'])->name('items.furniture');
+    Route::get('/items/vehicle', [ItemController::class, 'vehicle'])->name('items.vehicle');
+});
 
-//Unserviceable items
-Route::get('/items/unserviceable', [ItemController::class, 'unserviceable'])->name('items.unserviceable');
+//Department Submenu Route
+Route::prefix('departments')->group(function () {
+    Route::get('/index', [DepartmentController::class, 'index'])->name('departments.index');
+    Route::get('/export', [DepartmentController::class, 'export'])->name('departments.export');
+});
 
-//Disposal Items
-Route::get('/items/disposal', [ItemController::class, 'disposal'])->name('items.disposal');
-
-//IT Equipment
-Route::get('/items/it', [ItemController::class, 'it'])->name('items.it');
-
-//Office
-Route::get('/items/office', [ItemController::class, 'office'])->name('items.office');
-
-//Furnitures and Fixtures
-Route::get('/items/furniture', [ItemController::class, 'furniture'])->name('items.furniture');
-
-//Vehicle
-Route::get('/items/vehicle', [ItemController::class, 'vehicle'])->name('items.vehicle');
+//Issuances Submenu Route
+Route::prefix('issuances')->group(function () {
+    Route::get('/index', [DepartmentController::class, 'index'])->name('issuances.index');
+});
 
 //Department View
 Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
+
 
 //Export Route
 Route::get('/departments/export', [DepartmentController::class, 'export'])->name('departments.export');

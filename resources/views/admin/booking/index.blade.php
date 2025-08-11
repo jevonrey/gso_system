@@ -1,4 +1,4 @@
-@extends('website.layout')
+@extends('website.layoutAdmin')
 
 @section('content')
 <div class="container mx-auto px-4">
@@ -40,5 +40,8 @@
             @endforelse
         </tbody>
     </table>
-</div>
+</div><br>
+
+{{-- Booking Events --}}
+
 @endsection
