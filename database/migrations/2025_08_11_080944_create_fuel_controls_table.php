@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('fuel_controls', function (Blueprint $table) {
-    $table->id();
-    $table->date('date');
-    $table->string('ticket_number')->nullable();
-    $table->string('plate_no');
-    $table->decimal('distance', 8, 2)->nullable();
-    $table->decimal('gas_consumed', 8, 2)->nullable();
-    $table->string('office')->nullable();
-    $table->string('driver')->nullable();
-    $table->text('remarks')->nullable();
-    $table->timestamps();
-});
+        Schema::create('fuel_controls', function (Blueprint $table) {
+            $table->id();
+            $table->date('date');
+            $table->string('ticket_number')->nullable();
+            $table->string('plate_no');
+            $table->decimal('distance', 8, 2)->nullable();
+            $table->decimal('gas_consumed', 8, 2)->nullable();
+            $table->string('gas_type')->nullable(); // ✅ New column
+            $table->string('office')->nullable();
+            $table->string('driver')->nullable();
+            $table->text('remarks')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

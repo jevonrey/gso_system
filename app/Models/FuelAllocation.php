@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FuelControl extends Model
+class FuelAllocation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'date',
-        'ticket_number',
-        'plate_no',
-        'distance',
-        'gas_consumed',
-        'gas_type', // ✅ Add here
+        'fuel_type',
         'office',
-        'driver',
-        'remarks'
+        'allocated_liters'
     ];
 }

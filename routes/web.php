@@ -11,6 +11,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Admin\BookingAdminController;
 use App\Http\Controllers\FuelControlController;
+use App\Http\Controllers\FuelAllocationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,14 +25,38 @@ Route::view('/staff', 'website.staff')->name('staff');
 Route::view('/booking', 'booking.index')->name('booking');
 Route::view('/contact', 'website.contact')->name('contact');
 
+//Admin Role Route
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['admin'])->group(function () {
+        Route::resource('users', UserController::class);
+    });
+});
+
 //View Public Records
 Route::get('/public/dashboard', [PublicDashboardController::class, 'index'])->name('public.dashboard');
 Route::get('/public/departments', [PublicDepartmentController::class, 'index'])->name('public.departments');
 
-//Fuels Route
-Route::resource('fuel_controls', FuelControlController::class);
+//Fuel Controls Route
+Route::prefix('fuel_controls')->middleware(['auth'])->group(function () {
+    Route::get('/', [FuelControlController::class, 'index'])->name('fuel_controls.index');
+    Route::get('/create', [FuelControlController::class, 'create'])->name('fuel_controls.create'); // ADD
+    Route::post('/', [FuelControlController::class, 'store'])->name('fuel_controls.store');
+    Route::get('/{id}/edit', [FuelControlController::class, 'edit'])->name('fuel_controls.edit'); // ADD
+    Route::put('/{id}', [FuelControlController::class, 'update'])->name('fuel_controls.update');
+    Route::delete('/{id}', [FuelControlController::class, 'destroy'])->name('fuel_controls.destroy');
+});
 
-//Bookings
+//Fuel Allocations Route
+Route::prefix('fuel_controls/allocations')->middleware(['auth'])->group(function () {
+    Route::get('/', [FuelAllocationController::class, 'index'])->name('fuel_controls.allocations.index');
+    Route::get('/create', [FuelAllocationController::class, 'create'])->name('fuel_controls.allocations.create'); // ADD
+    Route::post('/', [FuelAllocationController::class, 'store'])->name('fuel_controls.allocations.store');
+    Route::get('/{id}/edit', [FuelAllocationController::class, 'edit'])->name('fuel_controls.allocations.edit'); // ADD
+    Route::put('/{id}', [FuelAllocationController::class, 'update'])->name('fuel_controls.allocations.update');
+    Route::delete('/{id}', [FuelAllocationController::class, 'destroy'])->name('fuel_controls.allocations.destroy');
+});
+
+//Facility Bookings
 Route::get('/booking', [BookingController::class, 'index'])->name('booking.index');
 Route::get('/booking/request', [BookingController::class, 'create'])->name('booking.create');
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
@@ -73,7 +99,7 @@ Route::get('/departments', [DepartmentController::class, 'index'])->name('depart
 Route::get('/departments/index', [DepartmentController::class, 'index'])->name('departments.index');
 
 
-//Export Route
+//Export Department Route
 Route::get('/departments/export', [DepartmentController::class, 'export'])->name('departments.export');
 
 //Dashboard view change

@@ -168,12 +168,10 @@
                         </svg>
                     </button>
                     <div x-show="open" class="mt-1 space-y-1 pl-4 transition duration-300 ease-in-out">
-                        <a href="{{ route('items.missing') }}"
-                            class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Total Fuel</a>
-                        <a href="{{ route('items.unserviceable') }}"
-                            class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Department</a>
-                        <a href="{{ route('items.disposal') }}"
-                            class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Latest</a>
+                        <a href="{{ route('fuel_controls.index') }}"
+                            class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Fuel Records</a>
+                        <a href="{{ route('fuel_controls.allocations.index') }}"
+                            class="block text-xs px-1 py-1 rounded hover:bg-gray-200">Remaining Fuel</a>
                     </div>
                 </div>
 

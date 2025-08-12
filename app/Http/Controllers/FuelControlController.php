@@ -3,71 +3,74 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FuelControl;
 
 class FuelControlController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-         $fuel_records = FuelControl::latest()->paginate(10);
-    return view('fuels.index', compact('fuel_records'));
+        $fuel_records = FuelControl::latest()->paginate(10);
+        return view('fuel_controls.index', compact('fuel_records'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('fuel_controls.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-        'date' => 'required|date',
-        'plate_no' => 'required',
-    ]);
+            'date' => 'required|date',
+            'ticket_number' => 'nullable|string',
+            'plate_no' => 'required|string',
+            'distance' => 'nullable|numeric',
+            'gas_consumed' => 'nullable|numeric',
+            'gas_type' => 'required|string',
+            'office' => 'nullable|string',
+            'driver' => 'nullable|string',
+            'remarks' => 'nullable|string',
+        ]);
 
-    FuelControl::create($request->all());
+        FuelControl::create($request->all());
 
-    return redirect()->route('fuels.index')->with('success', 'Fuel record created successfully.');
-
+        return redirect()->route('fuel_controls.index')
+                         ->with('success', 'Fuel record created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $record = FuelControl::findOrFail($id);
+        return view('fuel_controls.edit', compact('record'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'date' => 'required|date',
+            'ticket_number' => 'nullable|string',
+            'plate_no' => 'required|string',
+            'distance' => 'nullable|numeric',
+            'gas_consumed' => 'nullable|numeric',
+            'gas_type' => 'required|string',
+            'office' => 'nullable|string',
+            'driver' => 'nullable|string',
+            'remarks' => 'nullable|string',
+        ]);
+
+        $record = FuelControl::findOrFail($id);
+        $record->update($request->all());
+
+        return redirect()->route('fuel_controls.index')
+                         ->with('success', 'Fuel record updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $record = FuelControl::findOrFail($id);
+        $record->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('fuel_controls.index')
+                         ->with('success', 'Fuel record deleted successfully.');
     }
 }

@@ -16,7 +16,7 @@
                 <img src="{{ asset('image/agsur.png') }}" class="w-10 h-10" alt="GSO Logo">
                 <div class="text-left leading-tight">
                     <div class="text-sm text-gray-600">Republic of the Philippines</div>
-                    <div class="text-xl font-bold text-blue-900">STA JOSEFA, AGUSAN DEL SUR</div>
+                    <div class="text-xs font-bold text-blue-900">STA JOSEFA, AGUSAN DEL SUR</div>
                 </div>
             </div>
             <nav class="space-x-6 text-sm font-medium text-gray-700">
