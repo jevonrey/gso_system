@@ -3,20 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\FuelControl;
 
 class FuelControlController extends Controller
 {
     public function index()
     {
+    if (auth()->user()->role !== 'admin') {
+        // Normal user: only see own office records
+        $fuel_records = FuelControl::where('office', auth()->user()->office)->latest()->paginate(10);
+    } else {
+        // Admin: see all
         $fuel_records = FuelControl::latest()->paginate(10);
-        return view('fuel_controls.index', compact('fuel_records'));
     }
+
+    return view('fuel_controls.index', compact('fuel_records'));
+}
 
     public function create()
     {
-        return view('fuel_controls.create');
+    if (auth()->user()->role !== 'admin') {
+        abort(403, 'Unauthorized access.');
     }
+
+    $offices = ['BFP', 'PNP', 'MDRRMO', 'LGU'];
+    return view('fuel_controls.create', compact('offices'));
+}
 
     public function store(Request $request)
     {
@@ -35,14 +48,20 @@ class FuelControlController extends Controller
         FuelControl::create($request->all());
 
         return redirect()->route('fuel_controls.index')
-                         ->with('success', 'Fuel record created successfully.');
+            ->with('success', 'Fuel record created successfully.');
     }
 
     public function edit($id)
     {
-        $record = FuelControl::findOrFail($id);
-        return view('fuel_controls.edit', compact('record'));
+    if (auth()->user()->role !== 'admin') {
+        abort(403, 'Unauthorized access.');
     }
+
+    $record = FuelControl::findOrFail($id);
+    $offices = ['BFP', 'PNP', 'MDRRMO', 'LGU'];
+
+    return view('fuel_controls.edit', compact('record', 'offices'));
+}
 
     public function update(Request $request, $id)
     {
@@ -62,7 +81,7 @@ class FuelControlController extends Controller
         $record->update($request->all());
 
         return redirect()->route('fuel_controls.index')
-                         ->with('success', 'Fuel record updated successfully.');
+            ->with('success', 'Fuel record updated successfully.');
     }
 
     public function destroy($id)
@@ -71,6 +90,6 @@ class FuelControlController extends Controller
         $record->delete();
 
         return redirect()->route('fuel_controls.index')
-                         ->with('success', 'Fuel record deleted successfully.');
+            ->with('success', 'Fuel record deleted successfully.');
     }
 }

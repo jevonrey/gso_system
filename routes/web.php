@@ -38,12 +38,17 @@ Route::get('/public/departments', [PublicDepartmentController::class, 'index'])-
 
 //Fuel Controls Route
 Route::prefix('fuel_controls')->middleware(['auth'])->group(function () {
+    // View (accessible to all authenticated users)
     Route::get('/', [FuelControlController::class, 'index'])->name('fuel_controls.index');
-    Route::get('/create', [FuelControlController::class, 'create'])->name('fuel_controls.create'); // ADD
-    Route::post('/', [FuelControlController::class, 'store'])->name('fuel_controls.store');
-    Route::get('/{id}/edit', [FuelControlController::class, 'edit'])->name('fuel_controls.edit'); // ADD
-    Route::put('/{id}', [FuelControlController::class, 'update'])->name('fuel_controls.update');
-    Route::delete('/{id}', [FuelControlController::class, 'destroy'])->name('fuel_controls.destroy');
+
+    // Admin-only actions
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/create', [FuelControlController::class, 'create'])->name('fuel_controls.create');
+        Route::post('/', [FuelControlController::class, 'store'])->name('fuel_controls.store');
+        Route::get('/{id}/edit', [FuelControlController::class, 'edit'])->name('fuel_controls.edit');
+        Route::put('/{id}', [FuelControlController::class, 'update'])->name('fuel_controls.update');
+        Route::delete('/{id}', [FuelControlController::class, 'destroy'])->name('fuel_controls.destroy');
+    });
 });
 
 //Fuel Allocations Route
@@ -105,14 +110,14 @@ Route::get('/departments/export', [DepartmentController::class, 'export'])->name
 //Dashboard view change
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
- Route::resource('items', ItemController::class)->middleware('auth');
+Route::resource('items', ItemController::class)->middleware('auth');
 
- Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
 
- Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances.index');
+Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances.index');
 
- Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    
- Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    
-require __DIR__.'/auth.php';
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+require __DIR__ . '/auth.php';
