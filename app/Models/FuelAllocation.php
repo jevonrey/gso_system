@@ -10,9 +10,12 @@ class FuelAllocation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'po_number',
         'date',
+        'terms',
         'fuel_type',
         'office',
-        'allocated_liters'
+        'allocated_liters',
+        'remarks'
     ];
 }

@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('user');
-            $table->string('office')->nullable();
+            $table->string('office')->nullable()->after('role');
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['role', 'office']);
+            $table->dropColumn(['office']);
         });
     }
 };

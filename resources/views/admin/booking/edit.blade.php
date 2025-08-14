@@ -1,4 +1,4 @@
-@extends('website.layout')
+@extends('website.layoutAdmin')
 
 @section('content')
 <div class="container mx-auto px-4 max-w-2xl">

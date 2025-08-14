@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('fuel_allocations', function (Blueprint $table) {
             $table->id();
+            $table->string('po_number');
             $table->date('date'); // Date of allocation
+            $table->string('terms');
             $table->string('fuel_type'); // Diesel, Premium, Unleaded
             $table->string('office');
-            $table->decimal('allocated_liters', 10, 2);
+            $table->string('allocated_liters');
+            $table->string('remarks');
             $table->timestamps();
         });
     }

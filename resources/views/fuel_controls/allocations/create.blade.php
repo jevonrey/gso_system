@@ -17,8 +17,18 @@
     <form method="POST" action="{{ route('fuel_controls.allocations.store') }}">
         @csrf
         <div class="mb-3">
+            <label class="block mb-1">P.O Number</label>
+            <input type="text" name="po_number" class="w-full border rounded p-2 text-gray-900 bg-gray-500" required>
+        </div>
+
+        <div class="mb-3">
             <label class="block mb-1">Date</label>
             <input type="date" name="date" class="w-full border rounded p-2 text-gray-900 bg-gray-500" required>
+        </div>
+
+<div class="mb-3">
+            <label class="block mb-1">Terms</label>
+            <input type="text" name="terms" class="w-full border rounded p-2 text-gray-900 bg-gray-500" required>
         </div>
 
         <div class="mb-3">
@@ -39,6 +49,11 @@
         <div class="mb-3">
             <label class="block mb-1">Allocated Liters</label>
             <input type="number" step="0.01" name="allocated_liters" class="w-full border rounded p-2 text-gray-900 bg-gray-500" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="block mb-1">Remarks</label>
+            <input type="text" name="remarks" class="w-full border rounded p-2 text-gray-900 bg-gray-500" required>
         </div>
 
         <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">

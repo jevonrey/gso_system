@@ -41,6 +41,10 @@ Route::prefix('fuel_controls')->middleware(['auth'])->group(function () {
     // View (accessible to all authenticated users)
     Route::get('/', [FuelControlController::class, 'index'])->name('fuel_controls.index');
 
+    //Export Fuel Records
+    Route::get('/fuel_controls.export', [FuelControlController::class, 'export'])->name('fuel_controls.export');
+
+
     // Admin-only actions
     Route::middleware(['admin'])->group(function () {
         Route::get('/create', [FuelControlController::class, 'create'])->name('fuel_controls.create');

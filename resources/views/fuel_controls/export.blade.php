@@ -1,28 +1,29 @@
 <table>
     <thead>
         <tr>
-            <th class="p-2">Date</th>
-            <th class="p-2">Ticket Number</th>
-            <th class="p-2">Plate No.</th>
-            <th class="p-2">Distance (km)</th>
-            <th class="p-2">Gas Consumed (L)</th>
-            <th class="p-2">Office</th>
-            <th class="p-2">Driver</th>
-            <th class="p-2">Remarks</th>
-            <th class="p-2">Actions</th>
+            <th>Date</th>
+            <th>Ticket No</th>
+            <th>Plate No</th>
+            <th>Distance</th>
+            <th>Gas Consumed</th>
+            <th>Gas Type</th>
+            <th>Office</th>
+            <th>Driver</th>
+            <th>Remarks</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($items as $item)
+        @foreach($fuel_records as $record)
             <tr>
-                <td class="p-2">{{ $record->date }}</td>
-                <td class="p-2">{{ $record->ticket_number }}</td>
-                <td class="p-2">{{ $record->plate_no }}</td>
-                <td class="p-2">{{ $record->distance }}</td>
-                <td class="p-2">{{ $record->gas_consumed }}</td>
-                <td class="p-2">{{ $record->office }}</td>
-                <td class="p-2">{{ $record->driver }}</td>
-                <td class="p-2">{{ $record->remarks }}</td>
+                <td>{{ $record->date }}</td>
+                <td>{{ $record->ticket_number }}</td>
+                <td>{{ $record->plate_no }}</td>
+                <td>{{ $record->distance }}</td>
+                <td>{{ $record->gas_consumed }}</td>
+                <td>{{ $record->gas_type }}</td>
+                <td>{{ $record->office }}</td>
+                <td>{{ $record->driver }}</td>
+                <td>{{ $record->remarks }}</td>
             </tr>
         @endforeach
     </tbody>
